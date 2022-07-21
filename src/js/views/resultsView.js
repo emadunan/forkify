@@ -1,4 +1,5 @@
 import View from "./view";
+import previewView from "./previewView";
 
 class ResultsView extends View {
     _parentEl = document.querySelector('.results');
@@ -6,21 +7,7 @@ class ResultsView extends View {
     _successMessage = "";
 
     _generateMarkup() {
-        return `${this._data.map(el => {
-            return `
-            <li class="preview">
-                <a class="preview__link" href="#${el.id}">
-                    <figure class="preview__fig">
-                    <img src="${el.image}" alt="${el.title}" />
-                    </figure>
-                    <div class="preview__data">
-                        <h4 class="preview__title">${el.title}</h4>
-                        <p class="preview__publisher">${el.publisher}</p>
-                    </div>
-                </a>
-            </li>`;
-        })}
-        `;
+        return this._data.map(bookmark => previewView.render(bookmark, false)).join("");
     }
 }
 
