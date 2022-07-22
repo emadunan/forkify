@@ -33,8 +33,17 @@ export default class View {
             }
         });
     }
-    
 
+    // https://jsdoc.app/
+    /**
+     * Render the received object to the DOM
+     * @param {Object | Object[]} data The data to be rendered (e.g. recipe)
+     * @param {boolean} [render=true] If false create markup string instead of rendering to the DOM
+     * @returns {undefined | string}
+     * @this {Object} View instance
+     * @author emadunan
+     * @todo Refactor and test
+     */
     render(data, render = true) {
         // Check retrieved data
         if (!data || (Array.isArray(data) && data.length === 0)) return this.renderError();
