@@ -1,5 +1,5 @@
-import { API_KEY, API_URL, RESULTS_PER_PAGE } from "./config";
-import { AJAX } from "./helpers";
+import { API_KEY, API_URL, RESULTS_PER_PAGE } from "./config.js";
+import { AJAX } from "./helpers.js";
 
 // Application State
 export const state = {

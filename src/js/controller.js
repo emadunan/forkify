@@ -1,5 +1,5 @@
-import * as model from "./model";
-import { MODAL_CLOSE_SECONDS } from "./config";
+import * as model from "./model.js";
+import { MODAL_CLOSE_SECONDS } from "./config.js";
 
 // ES6 Polyfills
 import "regenerator-runtime/runtime"    // For polyfilling asyn/await
