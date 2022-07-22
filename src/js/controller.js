@@ -1,4 +1,5 @@
 import * as model from "./model";
+import { MODAL_CLOSE_SECONDS } from "./config";
 
 // ES6 Polyfills
 import "regenerator-runtime/runtime"    // For polyfilling asyn/await
@@ -9,6 +10,7 @@ import searchView from "./views/searchView";
 import resultsView from "./views/resultsView";
 import paginationView from "./views/paginationView";
 import bookmarksView from "./views/bookmarksView";
+import addRecipeView from "./views/AddRecipeView";
 
 // Parcel Configuration -- To avoid unrequired render during development
 // if (module.hot) {
@@ -90,11 +92,48 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmarks);
 }
 
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+}
+
+const controlAddRecipe = async function (newRecipe) {
+  try {
+    // Show loading spinner
+    addRecipeView.renderSpinner();
+
+    // Upload the new recipe data
+    await model.uploadRecipe(newRecipe)
+
+    // Render recipe
+    recipeView.render(model.state.recipe);
+
+    // Show success message
+    addRecipeView.renderSuccess();
+
+    // Render bookmark view
+    bookmarksView.render(model.state.bookmarks)
+
+    // Change ID in URL
+    window.history.pushState(null, '', `#${model.state.recipe.id}`)
+
+    // Close modal window
+    setTimeout(function () {
+      addRecipeView._toggleWindow();
+    }, MODAL_CLOSE_SECONDS * 1000)
+
+  } catch (error) {
+    console.error(`💥 ${error}`);
+    addRecipeView.renderError(error.message)
+  }
+}
+
 function init() {
+  bookmarksView.addBookmarksHandler(controlBookmarks);
   recipeView.addRenderRecipeHandlers(controlRecipe);
   recipeView.addUpdateServingsHandler(controlServings);
   recipeView.addAddBookmarkHandler(controlAddBookmark);
   searchView.addSearchHandler(controlSearchResults);
   paginationView.addClickHandler(controlPagination);
+  addRecipeView.addUploadHandler(controlAddRecipe)
 }
 init();
