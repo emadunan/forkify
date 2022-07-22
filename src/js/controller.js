@@ -10,7 +10,7 @@ import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
 import paginationView from "./views/paginationView.js";
 import bookmarksView from "./views/bookmarksView.js";
-import addRecipeView from "./views/AddRecipeView.js";
+import addRecipeView from "./views/addRecipeView.js";
 
 // Parcel Configuration -- To avoid unrequired render during development
 // if (module.hot) {
