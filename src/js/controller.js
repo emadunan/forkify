@@ -5,12 +5,12 @@ import { MODAL_CLOSE_SECONDS } from "./config.js";
 import "regenerator-runtime/runtime"    // For polyfilling asyn/await
 import "core-js/stable";                // For polyfilling everything else
 
-import recipeView from "./views/recipeView";
-import searchView from "./views/searchView";
-import resultsView from "./views/resultsView";
-import paginationView from "./views/paginationView";
-import bookmarksView from "./views/bookmarksView";
-import addRecipeView from "./views/AddRecipeView";
+import recipeView from "./views/recipeView.js";
+import searchView from "./views/searchView.js";
+import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
+import bookmarksView from "./views/bookmarksView.js";
+import addRecipeView from "./views/AddRecipeView.js";
 
 // Parcel Configuration -- To avoid unrequired render during development
 // if (module.hot) {
